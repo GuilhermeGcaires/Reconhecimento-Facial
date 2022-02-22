@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{}">My groups</a></li>
+    <li class="breadcrumb-item"><a href="{}">{{ registered_group.group.name }}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Check</li>
+  </ol>
+</nav>
+<h2 class="mb-3">{{ registered_group.group.name }}</h2>
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Sheets</th>
+          <th></th>
+          <th><a href="{% url 'students:group_delete' registered_group.pk %}" class="btn btn-danger float-right">Delete</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for attendance_sheet in registered_group.attendance_sheet.all %}
+          <tr>
+            <td>{{ attendance_sheet.date }}</td>
+            <td style="text-align: right;">{{ attendance_sheet.present }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

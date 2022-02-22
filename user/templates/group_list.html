@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% include '_header.html' with active='new' %}
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Groups</th>
+          <th>Teacher</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for group in groups %}
+          <tr>
+            <td class="align-middle">{{ group.name }}</td>
+            <td class="align-middle">{{ group.teacher }}</td>
+            <td class="text-right">
+              <a href="{% url 'students:group_register' group.pk %}" class="btn btn-primary">Register</a>
+            </td>
+          </tr>
+        {% empty %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
